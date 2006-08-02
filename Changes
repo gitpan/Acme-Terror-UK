@@ -1,0 +1,6 @@
+Revision history for Perl extension Acme::Terror::UK.
+
+0.01  Wed Aug  2 09:00:13 2006
+	- original version; created by h2xs 1.23 with options
+		-X -n Acme::Terror::UK
+
