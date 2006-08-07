@@ -9,7 +9,14 @@ use strict;
 use LWP::Simple;
 
 use vars qw($VERSION);
-$VERSION = '0.01';
+$VERSION = '0.02';
+
+use constant UNKNOWN		=> 0;
+use constant CRITICAL		=> 1;
+use constant SEVERE		=> 2;
+use constant SUBSTANTIAL	=> 3;
+use constant MODERATE		=> 4;
+use constant LOW		=> 5;
 
 
 sub new {
@@ -19,11 +26,32 @@ sub new {
 }
 
 sub fetch {
+	my $self = shift;
 	my $url = 'http://www.homeoffice.gov.uk/security/current-threat-level/';
 	my $html = get($url);
 	my ($lvl) = ($html =~ m|<h3 style="text-align: left">The current threat level is (.*?)</h3>|sg);
 	return $lvl;
 }
+
+sub level {
+	my $self = shift;
+	my $level = $self->fetch();
+	return UNKNOWN	unless ($level);
+	if ($level eq 'CRITICAL') {
+		return CRITICAL;
+	} elsif ($level eq 'SEVERE') {
+		return SEVERE;
+	} elsif ($level eq 'SUBSTANTIAL') {
+		return SUBSTANTIAL;
+	} elsif ($level eq 'MODERATE') {
+		return MODERATE;
+	} elsif ($level eq 'LOW') {
+		return LOW;
+	} else {
+		return UNKNOWN;
+	} 	
+}
+
 
 1;
 __END__
@@ -51,8 +79,44 @@ The levels are either...
  MODERATE - an attack is possible but not likely
  LOW - an attack is unlikely
 
-
 This module aims to be compatible with the US version, Acme::Terror
+
+=head1 METHODS
+
+=head2 new()
+
+  use Acme::Terror::UK
+  my $t = Acme::Terror::UK->new(); 
+
+Create a new instance of the Acme:Terror::UK class.
+
+=head2 fetch()
+
+  my $threat_level_string = $t->fetch();
+  print $threat_level_string;
+
+Return the current threat level as a string.
+
+=head2 level()
+
+  my $level = $t->level();
+  if ($level == Acme::Terror::UK::CRITICAL) {
+    print "Help, we're all going to die!\n";
+  }
+
+Return the level of the current terrorist threat as a comparable value.
+
+The values to compare against are,
+
+  Acme::Terror::UK::CRITICAL
+  Acme::Terror::UK::SEVERE
+  Acme::Terror::UK::SUBSTANTIAL
+  Acme::Terror::UK::MODERATE
+  Acme::Terror::UK::LOW
+
+If it can't retrieve the current level, it will return
+
+  Acme::Terror::UK::UNKNOWN
 
 =head1 BUGS
 

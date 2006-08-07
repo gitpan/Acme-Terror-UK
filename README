@@ -1,7 +1,14 @@
-Acme-Terror-UK version 0.01
+Acme-Terror-UK version 0.02
 ===========================
 
 Gets and returns the current UK terrorist threat status from the Home Office.
+
+EXAMPLE
+
+   my $t = Acme::Terror::UK->new();
+   if ($t->level() == Acme::Terror::UK::SEVERE) {
+       print "The current terror level is SEVERE\n";
+   }
 
 INSTALLATION
 

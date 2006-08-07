@@ -1,5 +1,12 @@
 Revision history for Perl extension Acme::Terror::UK.
 
+0.02  Mon Aug  7 13:25:00 2006
+	- Added level() method to return the current threat
+		level in a nicer format.
+	- Improved documentation and added details for all
+		public methods.
+	- Added some extra tests.
+
 0.01  Wed Aug  2 09:00:13 2006
 	- original version; created by h2xs 1.23 with options
 		-X -n Acme::Terror::UK
