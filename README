@@ -1,7 +1,7 @@
-Acme-Terror-UK version 0.02
+Acme-Terror-UK version 0.03
 ===========================
 
-Gets and returns the current UK terrorist threat status from the Home Office.
+Gets and returns the current UK terrorist threat status in the UK.
 
 EXAMPLE
 

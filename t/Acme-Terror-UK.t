@@ -12,4 +12,5 @@ my $t;
 
 ok($t = Acme::Terror::UK->new(), "Create Object");
 
-ok($t->level(), "Can't get current threat level");
+ok(defined($t->level()), "Current threat level");
+

@@ -9,7 +9,7 @@ use strict;
 use LWP::Simple;
 
 use vars qw($VERSION);
-$VERSION = '0.02';
+$VERSION = '0.03';
 
 use constant UNKNOWN		=> 0;
 use constant CRITICAL		=> 1;
@@ -27,9 +27,10 @@ sub new {
 
 sub fetch {
 	my $self = shift;
-	my $url = 'http://www.homeoffice.gov.uk/security/current-threat-level/';
+	my $url = 'http://www.mi5.gov.uk/output/Page4.html';
 	my $html = get($url);
-	my ($lvl) = ($html =~ m|<h3 style="text-align: left">The current threat level is (.*?)</h3>|sg);
+	return undef unless ($html);
+	my ($lvl) = ($html =~ m[<h4>FEATURE</h4><p>CURRENT THREAT LEVEL: (.*?)<br />]sg);
 	return $lvl;
 }
 
@@ -120,12 +121,14 @@ If it can't retrieve the current level, it will return
 
 =head1 BUGS
 
-This module just screenscrapes the home office website so is vulnerable
+This module just screenscrapes the MI5 website so is vulnerable
 to breaking if the page design changes.
 
 =head1 SEE ALSO
 
 Acme::Terror
+http://www.mi5.gov.uk/output/Page4.html
+http://www.intelligence.gov.uk/
 http://www.homeoffice.gov.uk/security/current-threat-level/
 
 =head1 AUTHOR
