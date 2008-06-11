@@ -1,5 +1,9 @@
 Revision history for Perl extension Acme::Terror::UK.
 
+0.04  Wed Jun 11 09:41:00 2008
+	- Changed screen scraping to use new page on the MI5
+		website. Patch supplied by B10m
+
 0.03  Thu Aug 10 09:40:00 2006
 	- Changed the screen scraping site to access the MI5
 		website instead as the original Home Office site

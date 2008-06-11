@@ -9,7 +9,7 @@ use strict;
 use LWP::Simple;
 
 use vars qw($VERSION);
-$VERSION = '0.03';
+$VERSION = '0.04';
 
 use constant UNKNOWN		=> 0;
 use constant CRITICAL		=> 1;
@@ -27,10 +27,10 @@ sub new {
 
 sub fetch {
 	my $self = shift;
-	my $url = 'http://www.mi5.gov.uk/output/Page4.html';
+	my $url = 'http://www.mi5.gov.uk/';
 	my $html = get($url);
 	return undef unless ($html);
-	my ($lvl) = ($html =~ m[<h4>FEATURE</h4><p>CURRENT THREAT LEVEL: (.*?)<br />]sg);
+	my ($lvl) = ($html =~ m["The current threat level in the UK - (.+?)"]sg);
 	return $lvl;
 }
 
@@ -127,9 +127,14 @@ to breaking if the page design changes.
 =head1 SEE ALSO
 
 Acme::Terror
+http://www.mi5.gov.uk/
 http://www.mi5.gov.uk/output/Page4.html
 http://www.intelligence.gov.uk/
 http://www.homeoffice.gov.uk/security/current-threat-level/
+
+=head1 THANKS
+
+B10m for supplying a patch after an MI5 site redesign
 
 =head1 AUTHOR
 
@@ -138,7 +143,7 @@ Robert Price, E<lt>rprice@cpan.orgE<gt>
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright (C) 2006 by Robert Price
+Copyright (C) 2006-2008 by Robert Price
 
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself, either Perl version 5.8.7 or,
