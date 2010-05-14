@@ -9,7 +9,7 @@ use strict;
 use LWP::Simple;
 
 use vars qw($VERSION);
-$VERSION = '0.05';
+$VERSION = '0.06';
 
 use constant UNKNOWN		=> 0;
 use constant CRITICAL		=> 1;

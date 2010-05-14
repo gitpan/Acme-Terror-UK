@@ -1,5 +1,8 @@
 Revision history for Perl extension Acme::Terror::UK.
 
+0.06  Fri May 14 14:34:00 2010
+	- Added dependancy for LWP::Simple to Makefile.PL
+
 0.05  Wed May 12 14:48:00 2010
 	- Change screen scraping to new new page on the MI5
 		website. Patch supplied by Neil Stott.
